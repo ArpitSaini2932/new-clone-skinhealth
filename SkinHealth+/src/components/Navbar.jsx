@@ -1,21 +1,64 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import img from '../import/import';
-import Home from "../pages/Home";
-const Navbar = () => {
-  return (
-    <nav className="bg-gray-50 text-black p-4">
-      <div className="container mx-auto flex justify-between items-center  text-[17px] font-medium">
-      <Link to="/">
-      <img className="w-44 ml-6 transition duration-300 " src={img.skinHealth} alt="" /></Link>
-        <ul className="flex gap-10 ">
-          <li><Link to="/skin-analysis" className="text-white hover:tracking-wide font-inter bg-gradient-to-r from-[#1273FF] to-[#00CCFF] px-7.5 py-3.5 rounded-4xl hover:text-black hover:bg-white border-blue-700 hover:brightness-110 hover:scale-110 transition duration-300 ">Ai Analysis</Link></li>
 
-          <li><Link to="/about" className="hover:brightness-110 hover:tracking-wide transition duration-300 hover:text-gray-400">About Us</Link></li>
+const Navbar = () => {
+  const location = useLocation();
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-purple-100 shadow-sm">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+
+        {/* Logo */}
+        <Link to="/" className="flex-shrink-0 hover:opacity-80 transition duration-200">
+          <img src={img.skinHealth} alt="SkinHealth" className="h-9 w-auto" />
+        </Link>
+
+        {/* Nav Links */}
+        <ul className="hidden md:flex items-center gap-2 list-none">
+          <li>
+            <Link
+              to="/skin-analysis"
+              className="flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-violet-500 to-teal-400 text-white text-sm font-bold shadow-md shadow-violet-200 hover:opacity-90 hover:-translate-y-0.5 transition duration-200"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
+              AI Analysis
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition duration-200 ${
+                location.pathname === "/about"
+                  ? "bg-violet-50 text-violet-600 font-semibold"
+                  : "text-slate-500 hover:bg-violet-50 hover:text-slate-800"
+              }`}
+            >
+              About Us
+            </Link>
+          </li>
         </ul>
-        <ul className="flex gap-8 mr+[30px]">
-          <li><Link to ="/login" className="hover:brightness-110 hover:tracking-wide transition duration-300 shadow-lg px-6 py-3 rounded-4xl">Log in</Link></li>
-          <li><Link to ="/Signup" className="hover:brightness-110 hover:tracking-wide transition duration-300 text-white  shadow-lg bg-black px-5.5 py-2.5 rounded-4xl ">Sign Up</Link></li>
+
+        {/* Auth Buttons */}
+        <ul className="flex items-center gap-3 list-none">
+          <li>
+            <Link
+              to="/login"
+              className="px-5 py-2 rounded-xl text-sm font-medium text-slate-600 border border-violet-200 hover:bg-violet-50 hover:border-violet-300 hover:text-slate-800 transition duration-200"
+            >
+              Log in
+            </Link>
+          </li>
+          <div className="w-px h-5 bg-violet-100" />
+          <li>
+            <Link
+              to="/Signup"
+              className="px-5 py-2 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-700 transition duration-200"
+            >
+              Sign Up
+            </Link>
+          </li>
         </ul>
+
       </div>
     </nav>
   );
