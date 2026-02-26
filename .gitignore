@@ -1,0 +1,14 @@
+# React	
+SkinHealth+/node_modules/
+
+# Python
+Ai-services/venv/
+Ai-services/__pycache__/
+Ai-services/skin_model.pth
+
+# Dataset
+Ai-services/dataset/
+Ai-services/original_dataset/
+
+# Misc
+.DS_Store
