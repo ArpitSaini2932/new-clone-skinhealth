@@ -1,4 +1,4 @@
-🩺 SkinHealth – AI-Based Skin Disease Detection System
+**🩺 SkinHealth – AI-Based Skin Disease Detection System**
 
 SkinHealth is a full-stack AI-powered web application that detects common skin conditions from uploaded images using a deep learning model.
 
