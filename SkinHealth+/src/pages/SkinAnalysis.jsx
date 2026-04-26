@@ -6,9 +6,12 @@ import {
   analysisFailure,
 } from "../redux/analysisSlice";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 
 const SkinAnalysis = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // ✅ ADDED
+
   const { loading, result, error } = useSelector((state) => state.analysis);
 
   const [image, setImage] = useState(null);
@@ -176,7 +179,7 @@ const SkinAnalysis = () => {
                 </div>
 
                 {/* Solution */}
-                <div className="mb-8">
+                <div className="mb-6">
                   <h3 className="text-xs uppercase font-semibold text-gray-400 mb-2">
                     Suggested Care
                   </h3>
@@ -185,9 +188,39 @@ const SkinAnalysis = () => {
                   </div>
                 </div>
 
+                {/* DOCTORS */}
+                {result.doctors && result.doctors.length > 0 && (
+                  <div className="mb-8">
+                    <h3 className="text-xs uppercase font-semibold text-gray-400 mb-3">
+                      Recommended Dermatologists
+                    </h3>
+
+                    <div className="space-y-3">
+                      {result.doctors.map((doc) => (
+                        <div
+                          key={doc.id}
+                          className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
+                        >
+                          <p className="font-semibold text-gray-800">{doc.name}</p>
+                          <p className="text-sm text-gray-500">{doc.specialty}</p>
+                          <p className="text-xs text-blue-500">📍 {doc.location}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* ✅ THIS IS STEP 3.3 */}
+                    <button
+                     onClick={() => navigate(`/doctors?disease=${result.disease}`)}
+                      className="mt-4 w-full py-2 rounded-lg bg-gray-800 text-white text-sm hover:bg-gray-700 transition"
+                    >
+                      View All Dermatologists
+                    </button>
+                  </div>
+                )}
+
                 {/* Disclaimer */}
                 <div className="mt-auto bg-amber-50 border border-amber-100 rounded-xl p-4 text-xs text-gray-600">
-                  ⚠️ This AI tool is for educational purposes only. Please consult a licensed dermatologist for professional medical advice.
+                  ⚠️ This AI tool is for educational purposes only.
                 </div>
               </div>
             )}

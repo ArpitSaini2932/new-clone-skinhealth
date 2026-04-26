@@ -6,9 +6,9 @@ import SkinScan from "./pages/SkinScan";
 import AboutUs from "./pages/AboutUs";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import Doctors from "./pages/Doctors";
 import SkinAnalysis from "./pages/SkinAnalysis";
-
+import Appointments from "./pages/Appointments";
 import Navbar from "./components/Navbar";
 import SkinScanPage from "./pages/SkinScanPage";
 import Footer from "./components/footer";
@@ -35,6 +35,9 @@ const AppWrapper = () => {
         <Route path="/scan" element={<SkinScan />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/scan-page" element={<SkinScanPage />} />
+        <Route path="/doctors" element={ <Doctors />}/> 
+        <Route path="/appointments" element={ <Appointments />}/>   
+
       </Routes>
       {!hideNavbar && <Footer/>}
     </>
