@@ -5,9 +5,7 @@ export default {
   content: [],
   theme: {
     extend: {
-      fontFamily:{
-        inter:["inter","sans-serif"],
-      },
+    
     },
   },
   plugins: [],
